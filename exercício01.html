@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+        .bloco {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .vitoria {
+            background-color: red
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="bloco1" class="bloco"></div>
+        <div id="bloco2" class="bloco"></div>
+        <div id="bloco3" class="bloco"></div>
+        <div id="bloco4" class="bloco"></div>
+        <div id="bloco5" class="bloco"></div>
+        <div id="bloco6" class="bloco"></div>
+        <div id="bloco7" class="bloco"></div>
+        <div id="bloco8" class="bloco"></div>
+        <div id="bloco9" class="bloco"></div>
+    </div>
+
+    <span id="mensagem"></span>
+
+    <script>
+
+        var bloco1 = document.getElementById("bloco1");
+        var bloco2 = document.getElementById("bloco2");
+        var bloco3 = document.getElementById("bloco3");
+        var bloco4 = document.getElementById("bloco4");
+        var bloco5 = document.getElementById("bloco5");
+        var bloco6 = document.getElementById("bloco6");
+        var bloco7 = document.getElementById("bloco7");
+        var bloco8 = document.getElementById("bloco8");
+        var bloco9 = document.getElementById("bloco9");
+        var span = document.getElementById("mensagem");
+
+        var click = function (e) {
+            var conteudo = e.target.innerHTML;
+            if (!conteudo || conteudo === "O") {
+                e.target.innerHTML = "X";
+            } else {
+                e.target.innerHTML = "O";
+            }
+            checarVitoria();
+        }
+
+        var checarVitoria = function (e) {
+
+            bloco1.classList.remove("vitoria");
+            bloco2.classList.remove("vitoria");
+            bloco3.classList.remove("vitoria");
+            bloco4.classList.remove("vitoria");
+            bloco5.classList.remove("vitoria");
+            bloco6.classList.remove("vitoria");
+            bloco7.classList.remove("vitoria");
+            bloco8.classList.remove("vitoria");
+            bloco9.classList.remove("vitoria");
+
+            var vitoria = false;
+
+            if (bloco1.innerHTML) {
+
+                if (bloco1.innerHTML == bloco2.innerHTML && bloco1.innerHTML == bloco3.innerHTML) {
+                    bloco1.classList.add("vitoria");
+                    bloco2.classList.add("vitoria");
+                    bloco3.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+                if (bloco1.innerHTML == bloco4.innerHTML && bloco1.innerHTML == bloco7.innerHTML) {
+                    bloco1.classList.add("vitoria");
+                    bloco4.classList.add("vitoria");
+                    bloco7.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+                if (bloco1.innerHTML == bloco5.innerHTML && bloco1.innerHTML == bloco9.innerHTML) {
+                    bloco1.classList.add("vitoria");
+                    bloco5.classList.add("vitoria");
+                    bloco9.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+            }
+
+            if (bloco2.innerHTML) {
+
+                if (bloco2.innerHTML == bloco5.innerHTML && bloco2.innerHTML == bloco8.innerHTML) {
+                    bloco2.classList.add("vitoria");
+                    bloco5.classList.add("vitoria");
+                    bloco8.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+            }
+
+            if (bloco3.innerHTML) {
+
+                if (bloco3.innerHTML == bloco6.innerHTML && bloco3.innerHTML == bloco9.innerHTML) {
+                    bloco3.classList.add("vitoria");
+                    bloco6.classList.add("vitoria");
+                    bloco9.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+                if (bloco3.innerHTML == bloco5.innerHTML && bloco3.innerHTML == bloco7.innerHTML) {
+                    bloco3.classList.add("vitoria");
+                    bloco5.classList.add("vitoria");
+                    bloco7.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+            }
+
+            if (bloco4.innerHTML) {
+
+                if (bloco4.innerHTML == bloco5.innerHTML && bloco4.innerHTML == bloco6.innerHTML) {
+                    bloco4.classList.add("vitoria");
+                    bloco5.classList.add("vitoria");
+                    bloco6.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+            }
+
+            if (bloco7.innerHTML) {
+
+                if (bloco7.innerHTML == bloco8.innerHTML && bloco7.innerHTML == bloco9.innerHTML) {
+                    bloco7.classList.add("vitoria");
+                    bloco8.classList.add("vitoria");
+                    bloco9.classList.add("vitoria");
+                    vitoria = true;
+                }
+
+            }
+
+            if (vitoria) {
+                span.innerHTML = "Você venceu! Pressione F5 para reiniciar o jogo.";
+            } else {
+                span.innerHTML = "";
+            }
+           
+        }
+
+        bloco1.addEventListener("click", click);
+        bloco2.addEventListener("click", click);
+        bloco3.addEventListener("click", click);
+        bloco4.addEventListener("click", click);
+        bloco5.addEventListener("click", click);
+        bloco6.addEventListener("click", click);
+        bloco7.addEventListener("click", click);
+        bloco8.addEventListener("click", click);
+        bloco9.addEventListener("click", click);
+
+    </script>
+
+
+</body>
+
+</html>

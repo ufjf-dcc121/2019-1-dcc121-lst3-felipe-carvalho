@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+        .regiao {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .disco {
+            display: block;
+        }
+
+        .selecionado {
+            border: 1px solid red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class=container>
+        <div id="regiaoa" class="regiao">
+            <span id="disco5" class="disco">5</span>
+            <span id="disco4" class="disco">4</span>
+            <span id="disco3" class="disco">3</span>
+            <span id="disco2" class="disco">2</span>
+            <span id="disco1" class="disco">1</span>
+        </div>
+        <div id="regiaob" class="regiao">
+        </div>
+        <div id="regiaoc" class="regiao">
+        </div>
+    </div>
+
+    <span id="nClick"></span>
+    <button id="reset">Resetar</button>
+
+
+    <script>
+
+        var button = document.getElementById("reset");
+        button.addEventListener("click", function () {
+            location.reload();
+        });
+
+        var regiaoA = document.getElementById("regiaoa");
+        var regiaoB = document.getElementById("regiaob");
+        var regiaoC = document.getElementById("regiaoc");
+
+        var disco1 = document.getElementById("disco1");
+        var disco2 = document.getElementById("disco2");
+        var disco3 = document.getElementById("disco3");
+        var disco4 = document.getElementById("disco4");
+        var disco5 = document.getElementById("disco5");
+
+        var nClick = document.getElementById("nClick");
+        var numero = 0;
+
+        var discoSelecionado;
+
+        var clickDisco = function (e) {
+
+            disco1.classList.remove("selecionado");
+            disco2.classList.remove("selecionado");
+            disco3.classList.remove("selecionado");
+            disco4.classList.remove("selecionado");
+            disco5.classList.remove("selecionado");
+            discoSelecionado = undefined;
+
+            if (e.target.parentElement.children[e.target.parentElement.childElementCount - 1] == e.target) {
+                e.target.classList.add("selecionado");
+                discoSelecionado = e.target;
+            }
+
+        }
+
+        var clickRegiao = function (e) {
+
+            if (discoSelecionado && discoSelecionado.parentElement != e.target) {
+                if (e.target.childElementCount == 0 ||
+                    Number.parseInt(discoSelecionado.innerHTML) < Number.parseInt(e.target.children[e.target.childElementCount - 1].innerHTML)) {
+                    e.target.appendChild(discoSelecionado);
+                    numero++;
+                    nClick.innerHTML = `Você já realizou ${numero} movimento(s).`
+                }
+            }
+
+        }
+
+        disco1.addEventListener("click", clickDisco);
+        disco2.addEventListener("click", clickDisco);
+        disco3.addEventListener("click", clickDisco);
+        disco4.addEventListener("click", clickDisco);
+        disco5.addEventListener("click", clickDisco);
+
+        regiaoA.addEventListener("click", clickRegiao);
+        regiaoB.addEventListener("click", clickRegiao);
+        regiaoC.addEventListener("click", clickRegiao);
+
+    </script>
+
+</body>
+
+</html>
